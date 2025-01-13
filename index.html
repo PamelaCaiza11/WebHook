@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumir Webhook</title>
+</head>
+<body>
+    <h1>Enviar datos al Webhook</h1>
+    <form id="webhookForm">
+        <label for="message">Mensaje:</label>
+        <input type="text" id="message" name="message" required>
+        <button type="submit">Enviar</button>
+    </form>
+    <p id="response"></p>
+
+    <script>
+        document.getElementById("webhookForm").addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const message = document.getElementById("message").value;
+    const responseElement = document.getElementById("response");
+
+    try {
+        const response = await fetch("http://localhost:5000/webhook", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ message }),
+        });
+
+        // Leer la respuesta como texto plano
+        const result = await response.text();
+        responseElement.textContent = `Respuesta del servidor: ${result}`;
+    } catch (error) {
+        responseElement.textContent = `Error: ${error.message}`;
+    }
+});
+
+    </script>
+</body>
+</html>
