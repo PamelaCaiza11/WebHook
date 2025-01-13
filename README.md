@@ -1,13 +1,4 @@
-<<<<<<< HEAD
-# Webhooks
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-# Webhooks
-=======
 Make sure you have pip installed and run: 
-=======
-
 # Instructions
 
 ## Install dependencies:
